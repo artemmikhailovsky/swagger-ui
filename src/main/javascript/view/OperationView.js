@@ -703,16 +703,8 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       if ('Blob' in window) {
         var type = contentType || 'text/html';
         var a = document.createElement('a');
-        var href;
+        var href = response.url;
 
-        if({}.toString.apply(content) === '[object Blob]') {
-          href = window.URL.createObjectURL(content);
-        }
-        else {
-          var binaryData = [];
-          binaryData.push(content);
-          href = window.URL.createObjectURL(new Blob(binaryData, {type: type}));
-        }
         var fileName = response.url.substr(response.url.lastIndexOf('/') + 1);
         var download = [type, fileName, href].join(':');
 
